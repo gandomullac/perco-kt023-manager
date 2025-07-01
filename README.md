@@ -40,8 +40,8 @@ Follow these steps to get up and running.
 1.  **Clone the Repository**
 
     ```bash
-    git clone [https://github.com/gandomullac/perco-kt023-manager.git](https://github.com/gandomullac/perco-kt023-manager.git)
-    cd this_project
+    git clone https://github.com/gandomullac/perco-kt023-manager.git
+    cd perco-kt023-manager
     ```
 
 2.  **Create a Clean Workspace (Virtual Environment)**
@@ -52,7 +52,7 @@ Follow these steps to get up and running.
     source venv/bin/activate  # On Windows: venv\Scripts\activate
     ```
 
-    _... or don't, it's not that big deal probably._
+    _... or don't, it's not that big of a deal probably._
 
 3.  **Install Dependencies**
     This command reads the `requirements.txt` file and installs the necessary packages.
