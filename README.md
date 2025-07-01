@@ -1,4 +1,4 @@
-# PERCo-KT023: The Sanity-Saving Interface
+# PERCo-KT023 Manager
 
 > _Because navigating the original web interface is like ...very bad._
 
