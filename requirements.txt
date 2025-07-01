@@ -1,0 +1,5 @@
+pandas
+requests
+ping3
+python-dotenv
+openpyxl
