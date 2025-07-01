@@ -69,6 +69,20 @@ Follow these steps to get up and running.
     cp .env.example .env
     ```
 
+## Command-Line Arguments
+
+⚠️ **Default Behavior Notice:** By default, running an update is now a **destructive operation**. The script will first **clear all existing cards** on the turnstile and then upload the list from your file. To perform an incremental update without deleting existing cards, you **must** use the `--skip-clear-all-cards` flag.
+
+| Argument                 | Description                                                                                                                | Default           |
+| :----------------------- | :------------------------------------------------------------------------------------------------------------------------- | :---------------- |
+| `--file`                 | **Required.** Path to the Excel file containing the card list.                                                             | `None`            |
+| `--skip-clear-all-cards` | Disables the default behavior of clearing all cards from the turnstile before an update. Use this for incremental updates. | `False`           |
+| `--skip-update`          | Skips the entire card update process (including backup and clearing).                                                      | `False`           |
+| `--skip-report`          | Skips the generation of the access report.                                                                                 | `False`           |
+| `--host`                 | The IP address or hostname of the turnstile.                                                                               | Value from `.env` |
+| `--records-to-fetch`     | Number of event records to download for the report.                                                                        | `10000`           |
+| `-v`, `--verbose`        | Enables verbose (DEBUG level) logging.                                                                                     | `False`           |
+
 ## Usage
 
 Once everything is configured, you can run the script from the root directory.

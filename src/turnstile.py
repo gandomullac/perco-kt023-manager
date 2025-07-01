@@ -31,7 +31,16 @@ class TurnstileManager:
         """Helper method to perform GET requests to the turnstile API."""
         url = f"{self.base_url}{endpoint}"
         try:
-            response = requests.get(url, auth=self.auth, params=params, timeout=10)
+            # Build the URL manually to avoid character conversion in query params
+            if params:
+
+                # Use doseq=True to handle lists, and quote_via=str to avoid encoding
+                query_string = "&".join(f"{k}={v}" for k, v in params.items())
+                full_url = f"{url}?{query_string}"
+            else:
+                full_url = url
+
+            response = requests.get(full_url, auth=self.auth, timeout=10)
             response.raise_for_status()
             logging.debug(
                 "Request to %s successful. Status: %s", url, response.status_code
@@ -153,3 +162,16 @@ class TurnstileManager:
         logging.info("Saving report to: %s", output_path)
         df_result.to_excel(output_path, index=False)
         logging.info("Report generated successfully.")
+
+    def clear_all_cards(self):
+        """
+        Clears all card records from the turnstile using /cgi/card_clr_list.
+        WARNING: This is a destructive operation.
+        """
+        logging.warning(
+            "Sending command to clear ALL card records from the turnstile..."
+        )
+        response = self._make_request("/cgi/card_clr_list")
+        logging.info(
+            "Clear command sent successfully. Response: %s", response.text.strip()
+        )

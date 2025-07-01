@@ -51,11 +51,17 @@ def main():
         "--skip-report", action="store_true", help="Skip generating the access report."
     )
     parser.add_argument(
+        "--skip-clear-all-cards",
+        action="store_true",
+        help="Skip clearing all cards from the turnstile.",
+    )
+    parser.add_argument(
         "-v",
         "--verbose",
         action="store_true",
         help="Increase output verbosity to DEBUG level.",
     )
+
 
     args = parser.parse_args()
 
@@ -74,6 +80,13 @@ def main():
 
         if not args.skip_update:
             manager.download_backup(BACKUP_DIR)
+
+            if args.skip_clear_all_cards:
+                logging.info("Skipping card clearing as requested.")
+            else:
+                manager.clear_all_cards()
+                logging.info("All cards cleared successfully.")
+
             manager.update_turnstile_cards(active_cards_df)
         else:
             logging.info("Skipping card update as requested.")
