@@ -62,7 +62,6 @@ def main():
         help="Increase output verbosity to DEBUG level.",
     )
 
-
     args = parser.parse_args()
 
     if args.verbose:
